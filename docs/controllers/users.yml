@@ -1,0 +1,184 @@
+
+
+/api/v1/users/:
+  get:
+    tags:
+      - users
+    name: users
+    summary: fetch all users
+    consumes:
+        - application/json
+    parameters:
+      - in: headers
+        name: Authorization
+        type: string
+        required: true
+        description: "Bearer Token"
+    responses:
+      200:
+            description: list of users.
+      400:
+            description: no users found
+      403:
+          description: Please login
+
+/api/v1/userById:
+  get:
+    tags:
+      - users
+    name: find user by id
+    summary: fetch user by id
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: headers
+        required: true
+      - name: id
+        in: request
+        required: true
+    responses:
+      200:
+            description: the list of all users
+      400:
+            description: no user found 
+      403:
+            description: Please login 
+
+/api/v1/userByEmail:
+  get:
+    tags:
+      - users
+    name: find user by email
+    summary: fetch user by email
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: headers
+        required: true
+      - name: email
+        in: request
+        required: true
+    responses:
+      200:
+            description: the list of all users
+      400:
+            description: no user found 
+      403:
+            description: Please login   
+
+/api/v1/userByStatus:
+  get:
+    tags:
+      - users
+    name: find user by status
+    summary: fetch user by status
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: headers
+        required: true
+      - name: status
+        in: request
+        required: true
+    responses:
+      200:
+            description: the list of all users
+      400:
+            description: no user found 
+      403:
+          description: Please login 
+
+/api/v1/userByFirstname:
+  get:
+    tags:
+      - users
+    name: find user by firstname
+    summary: fetch user by firstname
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: headers
+        required: true
+      - name: firstame
+        in: request
+        required: true
+    responses:
+      200:
+            description: the list of all users
+      400:
+            description: no user found 
+      403:
+            description: Please login 
+
+/api/v1/userByLastname:
+  get:
+    tags:
+      - users
+    name: find user by lastname
+    summary: fetch user by lastname
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: headers
+        required: true
+      - name: lastname
+        in: request
+        required: true
+    responses:
+      200:
+            description: the list of all users
+      400:
+            description: no user found 
+      403:
+            description: Please login   
+
+/api/v1/userByInput:
+  get:
+    tags:
+      - users
+    name: find user by any keywoard
+    summary: fetch user by input
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: headers
+        required: true
+      - name: input
+        in: request
+        required: true
+    responses:
+      200:
+            description: the list of all users
+      400:
+            description: no user found 
+      403:
+          description: Please login
+
+/api/v1/user:
+  delete:
+    tags:
+      - users
+    name: delete user by any id
+    summary: delete user by id
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: headers
+        required: true
+      - name: id
+        in: path
+        required: true
+    responses:
+      200:
+            description: user deleted succescfully!
+      400:
+            description: no user found 
+      403:
+          description: Please login                      

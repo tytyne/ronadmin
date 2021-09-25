@@ -1,0 +1,112 @@
+/api/v1/admins/:
+  get:
+    tags:
+      - admins
+    name: admins
+    summary: fetch all admins
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: header
+        required: true
+    responses:
+      200:
+            description: no admin found
+      400:
+            description: admins list
+    
+/api/v1/admin/id:
+  get:
+    tags:
+      - admins
+    name: find admin by id
+    summary: fetch admin by id
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: headers
+        required: true
+      - name: id
+        in: request
+        required: true
+    responses:
+      200:
+            description: the list of all admins
+      400:
+            description: no admin found 
+      403:
+            description: Please login
+
+/api/v1/admins/{id}:
+  delete:
+    tags:
+      - admins
+    name: delete admin by id
+    summary: delete admin by id
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: headers
+        required: true
+      - name: id
+        in: path
+        required: true
+    responses:
+      200:
+            description: the admin deleted successfully!
+      400:
+            description: no admin found 
+      403:
+            description: Please login
+
+/api/v1/register:
+  post:
+    tags:
+      - admins
+    name: admins
+    summary: create admin
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: headers
+        required: true
+      - in: "body"
+        name: "body"
+        description: "Admin object that needs to be added to the database"
+        required: true
+        schema:
+          $ref: "#/definitions/RegisterAdmin"
+    responses:
+      200:
+            description: no admin found
+      400:
+            description: admins list
+      403:
+          description: Please login  
+
+/api/v1/login:
+  post:
+    tags:
+      - admins
+    name: admins
+    summary: login admin
+    consumes:
+        - application/json
+    parameters:
+      - in: "body"
+        name: "body"
+        description: "Admin object that needs to be added to the database"
+        required: true
+        schema:
+          $ref: "#/definitions/AddLogin"
+    responses:
+      200:
+            description: no admin found
+      400:
+            description: admins list
+      403:
+          description: Please login  

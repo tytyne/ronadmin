@@ -1,0 +1,18 @@
+
+definitions:
+  AddSpeaker:
+    type: "object"
+    properties:
+      Email:
+        type: "string"
+      EventTitle:
+        type: "string"
+      Phone:
+        type: "number"
+      About:
+        type: "string"
+      Moderator:
+        type: "integer"
+      Title:
+        type: "string"
+     

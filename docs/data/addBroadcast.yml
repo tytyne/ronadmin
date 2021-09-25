@@ -1,0 +1,13 @@
+definitions:
+  AddBroadcast:
+    type: "object"
+    properties:
+      Comment:
+        type: "string"
+      TargetType:
+        type: "number"
+      TargetID:
+        type: "number"
+      MediaURL:
+        type: "integer"
+     

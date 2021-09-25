@@ -1,0 +1,38 @@
+definitions:
+  Admins:
+    type: "object"
+    properties:
+      FirstName:
+        type: "string"
+      LastName:
+        type: "string"
+      Email:
+        type: "string" 
+      Password:
+        type: "string"
+      Status:
+        type: "number"
+      CreatedAt:
+        type: "string"
+      UpdatedAt:
+        type: "string"
+      LastLogin:
+        type: "number"
+      VerificationID:
+        type: "string"
+      Role:
+        type: "string"
+      Phone:
+        type: "string"
+      PhoneStatus:
+        type: "string"  
+      PasswordResetCode:
+        type: "string"
+      ImageUrl:
+        type: "string"
+
+
+
+ 
+          
+       

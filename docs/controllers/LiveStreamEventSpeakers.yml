@@ -1,0 +1,93 @@
+/api/v1/speakers/:
+  get:
+    tags:
+      - speakers
+    name: speakers
+    summary: fetch all speakers
+    consumes:
+        - application/json
+    produces:
+      - "application/json"
+    parameters:
+    - name: Authorization
+      in: header
+      required: true
+    responses:
+      200:
+            description: no speaker found
+      400:
+            description: the list of all speakers
+      403:
+          description: Please login
+
+/api/v1/user/speaker:
+  post:
+    tags:
+      - speakers 
+    summary: "Registers a new speaker"
+    description: "Adds a new speaker to the Database"
+    consumes:
+      - application/json
+    produces:
+      - "application/json"
+    parameters:
+    - name: Authorization
+      in: header
+      required: true
+    - in: "body"
+      name: "body"
+      description: "Speaker object that needs to be added to the database"
+      required: true
+      schema:
+        $ref: "#/definitions/AddSpeaker"
+    responses:
+      200:
+        description: "event speaker created successfully"
+      403:
+          description: Please login
+
+/api/v1/speaker/{id}:
+  get:
+    tags:
+      - speakers
+    name: find speaker by id
+    summary: fetch speaker by id
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: header
+        required: true
+      - name: id
+        in: path
+        required: true
+    responses:
+      200:
+            description: the speaker
+      400:
+            description: no speaker found
+      403:
+          description: Please login      
+
+/api/v1/speakers/{id}:
+  delete:
+    tags:
+      - speakers
+    name: delete speaker by id
+    summary: delete speaker by id
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: header
+        required: true
+      - name: id
+        in: path
+        required: true
+    responses:
+      200:
+            description: the speaker deleted successfully!
+      400:
+            description: no speaker found
+      403:
+          description: Please login      

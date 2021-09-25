@@ -1,0 +1,39 @@
+definitions:
+  Users:
+    type: "object"
+    properties:
+      FirstName:
+        type: "string"
+      LastName:
+        type: "string"
+      Email:
+        type: "string" 
+      Password:
+        type: "string"
+      Status:
+        type: "number"
+      CreatedAt:
+        type: "string"
+      UpdatedAt:
+        type: "string"
+      LastLogin:
+        type: "string"
+      VerificationID:
+        type: "string"
+      Balance:
+        type: "integer"
+      Role:
+        type: "string"
+      Phone:
+        type: "string"
+      PhoneStatus:
+        type: "string"  
+      PasswordResetCode:
+        type: "string"
+      ImageUrl:
+        type: "string"
+
+
+ 
+          
+       

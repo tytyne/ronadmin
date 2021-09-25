@@ -1,0 +1,34 @@
+
+definitions:
+  LiveStreamEventSpeakers:
+    type: "object"
+    properties:
+      Email:
+        type: "string"
+      UserID:
+        type: "number"
+      LiveStreamEventID:
+        type: "number" 
+      Name:
+        type: "string"
+      Phone:
+        type: "number"
+      About:
+        type: "string"
+      Moderator:
+        type: "integer"
+      Title:
+        type: "number"
+      CreatedBy:
+        type: "string"
+      Created:
+        type: "string"
+      UpdatedBy:
+        type: "string"
+      Updated:
+        type: "string"
+    
+
+
+ 
+  
