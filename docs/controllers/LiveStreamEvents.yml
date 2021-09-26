@@ -1,0 +1,95 @@
+/api/v1/events/:
+  get:
+    tags:
+      - events
+    name: events
+    summary: fetch all events
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: header
+        required: true
+    responses:
+      200:
+            description: no event found
+      400:
+            description: the list of all events
+      403:
+            description: Please login
+
+/api/v1/event/{id}:
+  get:
+    tags:
+      - events
+    name: find event by id
+    summary: fetch event by id
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: header
+        required: true
+      - name: id
+        in: path
+        required: true
+    responses:
+      200:
+            description: the list of all events
+      400:
+            description: no event found
+      403:
+          description: Please login  
+
+/api/v1/event:
+  post:
+    tags:
+      - events 
+    summary: "Registers a new event"
+    description: "Adds a new event to the Database"
+    consumes:
+      - application/json
+    produces:
+      - "application/json"
+    parameters:
+    - name: Authorization
+      in: header
+      required: true
+    - in: "body"
+      name: "body"
+      description: "Event object that needs to be added to the database"
+      required: true
+      schema:
+        $ref: "#/definitions/AddEvent"
+    responses:
+      200:
+        description: "event created successfully"
+      403:
+          description: Please login
+
+/api/v1/events/{id}:
+  delete:
+    tags:
+      - events
+    name: delete event by id
+    summary: delete event by id
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: header
+        required: true
+      - name: id
+        in: path
+        required: true
+    responses:
+      200:
+            description: the event deleted successfully!
+      400:
+            description: no event found
+      403:
+          description: Please login  
+
+
+
+    

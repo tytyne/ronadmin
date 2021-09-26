@@ -1,0 +1,95 @@
+/api/v1/broadcasts/:
+  get:
+    tags:
+      - broadcastposts
+    name: broadcastposts
+    summary: fetch all broadcastposts
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: header
+        required: true
+    responses:
+      200:
+            description: no broadcastpost found
+      400:
+            description: the list of all broadcastposts
+      403:
+            description: Please login
+
+/api/v1/broadcast/{id}:
+  get:
+    tags:
+      - broadcastposts
+    name: find broadcastpost by id
+    summary: fetch broadcastpost by id
+    consumes:
+        - application/json
+    parameters:
+      - name: Authorization
+        in: header
+        required: true
+      - name: id
+        in: path
+        required: true
+    responses:
+      200:
+            description: the list of all broadcastposts
+      400:
+            description: no broadcastpost found
+      403:
+          description: Please login  
+
+/api/v1/broadcast:
+  post:
+    tags:
+      - broadcastposts 
+    summary: "create a new broadcastpost"
+    description: "Adds a new broadcastpost to the Database"
+    consumes:
+      - application/json
+    produces:
+      - "application/json"
+    parameters:
+    - name: Authorization
+      in: header
+      required: true
+    - in: "body"
+      name: "body"
+      description: "broadcastpost object that needs to be added to the database"
+      required: true
+      schema:
+        $ref: "#/definitions/AddBroadcast"
+    responses:
+      200:
+        description: "broadcastpost created successfully"
+      403:
+          description: Please login
+
+# /api/v1/broadcasts/{id}:
+#   delete:
+#     tags:
+#       - broadcastposts
+#     name: delete broadcastpost by id
+#     summary: delete broadcastpost by id
+#     consumes:
+#         - application/json
+#     parameters:
+#       - name: Authorization
+#         in: header
+#         required: true
+#       - name: id
+#         in: path
+#         required: true
+#     responses:
+#       200:
+#             description: the broadcastpost deleted successfully!
+#       400:
+#             description: no broadcastpost found
+#       403:
+#           description: Please login  
+
+
+
+    

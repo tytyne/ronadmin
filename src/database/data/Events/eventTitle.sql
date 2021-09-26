@@ -1,0 +1,1 @@
+Select Id,EventTitle from dbo.LiveStreamEvents

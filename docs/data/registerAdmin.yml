@@ -1,0 +1,13 @@
+definitions:
+  RegisterAdmin:
+    type: "object"
+    properties:
+      FirstName:
+        type: "string"
+      LastName:
+        type: "string"
+      Email:
+        type: "string" 
+      Password:
+        type: "string"
+     

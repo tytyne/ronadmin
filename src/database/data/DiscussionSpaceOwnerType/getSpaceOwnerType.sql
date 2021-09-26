@@ -1,0 +1,1 @@
+select ID  from dbo.DiscussionSpaceOwnerType

@@ -1,0 +1,19 @@
+definitions:
+  AddEvent:
+    type: "object"
+    properties:
+      EventTitle:
+        type: "string"
+      EventStartTime:
+        type: "string"
+      EventDuration:
+        type: "number"
+      EventDescription:
+        type: "string"
+      EventStreamEnbedCode:
+        type: "integer"
+      HostType:
+        type: "string"
+      HostDiscussionSpaceId:
+        type: "number"
+

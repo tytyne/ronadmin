@@ -1,0 +1,33 @@
+definitions:
+  LiveStreamEvents:
+    type: "object"
+    properties:
+      EventTitle:
+        type: "string"
+      EventStartTime:
+        type: "string"
+      EventEndTime:
+        type: "string" 
+      EventDuration:
+        type: "number"
+      EventDescription:
+        type: "number"
+      EventStreamEnbedCode:
+        type: "string"
+      EventStreamEmbedType:
+        type: "integer"
+      HostDiscussionSpaceId:
+        type: "number"
+      CreatedAt:
+        type: "string"
+      CreatedBy:
+        type: "string"
+      UpdatedAt:
+        type: "string"
+      UpdatedBy:
+        type: "string"
+      HostType:
+        type: "string"  
+      EventStatus:
+        type: "string"
+      
