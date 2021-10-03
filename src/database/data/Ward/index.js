@@ -35,6 +35,22 @@ const storeWard = async (data) => {
         return error.message;
     }
 }
+const updateWard = async (Id,data) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('Ward');
+        const insertPost = await pool.request()
+            .input('WardID', sql.Int,Id)
+            .input('WardName', sql.NVarChar(250), data.WardName)
+            .input('Lga', sql.Int, data.Lga)
+            .input('DateUpdated', sql.DateTime, data.DateUpdated)
+            
+            .query(sqlQueries.createWard);
+        return insertPost.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
 
 const deleteById = async (Id) => {
     try {
@@ -48,4 +64,18 @@ const deleteById = async (Id) => {
         return error.message;
     }
 }
-export default {getWards,storeWard,deleteById}
+const getWardById = async (Id)=>{
+    try{
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('Ward');
+        const user = await pool.request()
+            .input('Id', sql.Int,Id)
+            .query(sqlQueries.WardById);
+        return user.recordset;
+    }
+    catch(error){
+        console.log(error.message)
+    }
+}
+
+export default {getWards,storeWard,deleteById,updateWard,getWardById }

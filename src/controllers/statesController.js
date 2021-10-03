@@ -11,4 +11,5 @@ class statesController{
     }
 
 }
+
 export default statesController
