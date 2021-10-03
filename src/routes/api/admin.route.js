@@ -14,4 +14,5 @@ router.get("/admin/id",auth.isAdmin,adminController.getAdminById)
 router.get("/admins",auth.isAdmin,adminController.getAdmins)
 router.get("/admin/email",auth.isAdmin,adminController.getAdminByEmail)
 router.get("/admin/input",auth.isAdmin, adminController.getAdminByInput)
+router.get("/me",auth.isAdmin,adminController.getAdminValue)
 export default router;

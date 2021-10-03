@@ -31,6 +31,22 @@ const storeState = async (data) => {
         return error.message;
     }
 }
+const updateState = async (Id,data) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('States');
+        const insertPost = await pool.request()
+            .input('Id', sql.Int, Id)
+            .input('Statename', sql.NVarChar(250), data.Statename)
+            .input('Created', sql.DateTime, data.Created)
+            
+            .query(sqlQueries.createState);
+        return insertPost.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
+
 
 const deleteById = async (Id) => {
     try {
@@ -44,5 +60,18 @@ const deleteById = async (Id) => {
         return error.message;
     }
 }
+const getStateById = async (Id)=>{
+    try{
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('States');
+        const user = await pool.request()
+            .input('Id', sql.Int,Id)
+            .query(sqlQueries.stateById);
+        return user.recordset;
+    }
+    catch(error){
+        console.log(error.message)
+    }
+}
 
-export default {getStates,storeState,deleteById}
+export default {getStates,storeState,updateState,deleteById,getStateById}

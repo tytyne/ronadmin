@@ -1,18 +1,16 @@
-insert into dbo.Wards
+insert into dbo.FederalConstituency
     (
-        [WardID],
-        [WardName],
-        [Lga],
-        [DateCreated],
-        [DateUpdated]
+        [id],
+        [FcName],
+        [Created],
+      
 
     )
 VALUES 
     (
-        @WardID,
-        @WardName,
-        @Lga,
-        @DateCreated,
-        @DateUpdated   
+        @id,
+        @FcName,
+        @Created,
+   
        
     )

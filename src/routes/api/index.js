@@ -10,6 +10,25 @@ import Group from "./group.route"
 import Trial from "./trial.route"
 import About from "./about.route"
 import Stats from "./stats.route"
+import Ward from "./ward.route"
+import Federal from "./federal.route"
+import State from "./states.route"
+import Senatorial from "./senatorial.route"
+import NominationCategory from "./nominationCategory.route"
+import StateHouse from "./stateHouse.route"
+import Lga from "./lga.route"
+import Gateway from "./gateway.route"
+import Country from "./country.route"
+import BroadcastType from "./brodcastType.route"
+import DiscussionSpaceOwner from "./discussionSpaceOwner.route"
+import ElectedPosition from "./electedPosistion.route"
+import DiscussionSpace from "./discussionSpace.route"
+import EventHostType from "./hostType.route"
+import EventCategory from "./eventCategory.route"
+import NominationType from "./nominationType.route"
+import DonationTypes from "./donationType.route"
+import Donation from "./donation.route"
+
 const router = express.Router()
 
 router.use("/",Admin)
@@ -17,13 +36,31 @@ router.use("/",Event)
 router.use("/",User)
 router.use("/",Speaker)
 router.use("/",Broadcast)
-
 router.use("/",Host)
 router.use("/",Discussion)
 router.use("/",Group)
 router.use("/t1/",Trial)
 router.use("/",About)
 router.use("/",Stats)
-
+router.use("/",Ward)
+router.use("/",State)
+router.use("/",Federal)
+router.use("/",Senatorial)
+router.use("/",StateHouse)
+router.use("/",Lga)
+router.use("/",Gateway)
+router.use("/",Country)
+router.use("/",BroadcastType)
+router.use("/",DiscussionSpaceOwner)
+router.use("/",ElectedPosition)
+router.use("/",DiscussionSpace)
+router.use("/",DiscussionSpaceOwner)
+router.use("/",DiscussionSpace)
+router.use("/",EventHostType)
+router.use("/",EventCategory)
+router.use("/",NominationType)
+router.use("/", NominationCategory)
+router.use("/",DonationTypes)
+router.use("/",Donation)
 
 export default router;

@@ -1,2 +1,2 @@
-Delete from dbo.Wards
-WHERE  WardID =@Id
+Delete from dbo.FederalConstituency
+WHERE  id =@id

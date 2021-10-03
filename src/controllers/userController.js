@@ -132,14 +132,9 @@ class userController {
       return next(new Error(err));
     }
   }
-  static async updateUser(req, res, next) {
-    try {
-    } catch (err) {
-      return next(new Error(err));
-    }
-  }
+ 
   static async deleteUser(req, res, next) {
-    try {
+   
       try {
         const userId = req.query.id;
         const user = await UserData.getUserById(userId);
@@ -151,10 +146,8 @@ class userController {
       } catch (err) {
         return next(new Error(err));
       }
-    } catch (err) {
-      return next(new Error(err));
     }
-  }
+  
 
 }
 export default userController;

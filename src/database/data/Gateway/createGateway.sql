@@ -1,6 +1,6 @@
-insert into dbo.Lga
+insert into dbo.Gateway
     (
-        [GatewayID],
+        [Description],
         [GKey1],
         [GKey2],
         [DateCreated],
@@ -9,16 +9,11 @@ insert into dbo.Lga
     )
 VALUES 
     (
-        @GatewayID,
-        @LgaName,
-        @State,
-        @Created,
-        @Id   
+        @Description,
+        @GKey1,
+        @GKey2,
+        @DateCreated
+        @DateUpdated
        
     )
- [GatewayID]
-      ,[Description]
-      ,[GKey1]
-      ,[GKey2]
-      ,[DateCreated]
-      ,[DateUpdated]
+ 

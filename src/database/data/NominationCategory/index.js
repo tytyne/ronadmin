@@ -31,6 +31,20 @@ const storeNominationCategory = async (data) => {
         return error.message;
     }
 }
+const updateNominationCategory = async (data) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('NominationCategory');
+        const insertPost = await pool.request()
+            .input('Description', sql.NVarChar(150), data.Description)
+            .input('DateCreated', sql.DateTime, data.DateCreated)
+            .input('DateUpdated', sql.DateTime, data.DateUpdated)
+            .query(sqlQueries.createNominationCategory);
+        return insertPost.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
 
 const deleteById = async (Id) => {
     try {
@@ -44,5 +58,17 @@ const deleteById = async (Id) => {
         return error.message;
     }
 }
+const getNomsById = async (Id) => {
+    try {
+    const pool = await sql.connect(config.sql)
+    const sqlQueries = await utils.loadSqlQueries('NominationCategory')
+    const post = await pool.request()
+        .input('Id', sql.Int, Id)
+        .query(sqlQueries.getNominationCategoryById)
+    return post.recordset
+    } catch (error) {
+        return error.message;
+    }
+}
 
-export default {getNominationCategory,storeNominationCategory,deleteById}
+export default {getNominationCategory,storeNominationCategory,updateNominationCategory,deleteById,getNomsById}
