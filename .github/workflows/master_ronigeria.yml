@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'ronigeria'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C4BC0EEF62DF435FB9717B815E7FDDDB }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D5DA8454B2D14B71BCC40E5D8069EE00 }}
           package: .
