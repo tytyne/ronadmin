@@ -15,7 +15,7 @@ router.get("/userByStatus",checkAdmin.isAdmin,userController.getUserByStatus)
 router.get("/userByInput",checkAdmin.isAdmin,userController.getUserByInput)
 router.get("/users",checkAdmin.isAdmin,userController.getUsers)
 router.delete("/user/:id",checkAdmin.isAdmin,userController.deleteUser)
-router.put("/update/user/:id",checkAdmin.isAdmin,userController.updateUser)
+router.put("/update/user/:id",checkAdmin.isAdmin,userController.updatingUser)
 router.put("/disable/user/:id",checkAdmin.isAdmin,userController.disablingUser)
 
 

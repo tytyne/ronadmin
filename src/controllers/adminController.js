@@ -51,12 +51,10 @@ class AdminController {
       return res.status(400).json({ error: "no user found!" });
     const passwordTodecode = user[0].Password;
     const decrypss = await decodePassword(password, passwordTodecode);
-    console.log(decrypss);
     if (!decrypss)
       return res.status(400).json({ error: "incorrect email or password" });
-    const name = `${user[0].FirstName}`;
     const token = jwtToken.createToken(user[0]);
-    return res.status(200).json({ message: "thank for signin", name, token });
+    return res.status(200).json({ message: "thank for signin", token });
   }
 
 
@@ -152,7 +150,7 @@ class AdminController {
   }
   static async getAdminValue(req, res, next) {
     try {
-      const admin = await await AdminData.getAdminById(req.user.Id);
+      const admin =  await AdminData.getAdminById(req.user.Id);
 
       if (admin.length === 0)
         return res.status(400).json({ error: "we can't get your information" });

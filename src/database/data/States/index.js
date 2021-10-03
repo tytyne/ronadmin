@@ -44,5 +44,18 @@ const deleteById = async (Id) => {
         return error.message;
     }
 }
+const getStateById = async (Id)=>{
+    try{
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('States');
+        const user = await pool.request()
+            .input('Id', sql.Int,Id)
+            .query(sqlQueries.stateById);
+        return user.recordset;
+    }
+    catch(error){
+        console.log(error.message)
+    }
+}
 
-export default {getStates,storeState,deleteById}
+export default {getStates,storeState,deleteById,getStateById}
