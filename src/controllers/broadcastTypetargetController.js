@@ -2,7 +2,7 @@ import BroadcastTypeData from "../database/data/BroadcastPostTargetType"
 class BroadcastTypetargetController{
     static async allBroadcastType(req,res,next){
         try{
-            const data = await BroadcastTypeData.getBroadcastPost()
+            const data = await BroadcastTypeData.getPostTargetTypes()
             return res.status(200).json({message:"broadcast type target",data})
         }
         catch(err){

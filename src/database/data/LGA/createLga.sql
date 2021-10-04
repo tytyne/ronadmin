@@ -1,6 +1,5 @@
 insert into dbo.Lga
     (
-        [LgaID],
         [LgaName],
         [State],
         [Created],
@@ -9,10 +8,10 @@ insert into dbo.Lga
     )
 VALUES 
     (
-        @LgaID,
         @LgaName,
         @State,
         @Created,
         @Id   
        
     )
+Select SCOPE_IDENTITY() AS LgaID;

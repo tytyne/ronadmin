@@ -4,8 +4,8 @@ import checkAdmin from "../../middlewares/checkAdmin"
 const router = express.Router()
 
 
-router.get("/hosts",checkAdmin.isAdmin,hostTypeController.getAll)
-router.get("/hosyByInput",checkAdmin.isAdmin,hostTypeController.getHostByName)
+router.get("/hosts",hostTypeController.getAll)
+router.get("/hosyByInput",hostTypeController.getHostByName)
 
 
 export default router;

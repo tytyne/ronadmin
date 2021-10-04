@@ -25,7 +25,7 @@ import ElectedPosition from "./electedPosistion.route"
 import DiscussionSpace from "./discussionSpace.route"
 import EventHostType from "./hostType.route"
 import EventCategory from "./eventCategory.route"
-import NominationType from "./nominationType.route"
+import NotificationType from "./notificationType.route"
 import DonationTypes from "./donationType.route"
 import Donation from "./donation.route"
 
@@ -58,7 +58,7 @@ router.use("/",DiscussionSpaceOwner)
 router.use("/",DiscussionSpace)
 router.use("/",EventHostType)
 router.use("/",EventCategory)
-router.use("/",NominationType)
+router.use("/",NotificationType)
 router.use("/", NominationCategory)
 router.use("/",DonationTypes)
 router.use("/",Donation)

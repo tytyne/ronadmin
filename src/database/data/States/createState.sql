@@ -2,15 +2,15 @@ insert into dbo.States
     (
         [StateID],
         [Statename],
-        [Created],
-        [Id]
+        [Created]
      
     )
 VALUES 
     (
         @StateID,
         @Statename,
-        @Created,
-        @Id   
+        @Created
        
     )
+
+

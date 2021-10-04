@@ -1,6 +1,5 @@
 insert into dbo.FederalConstituency
     (
-        [id],
         [FcName],
         [Created],
       
@@ -8,9 +7,10 @@ insert into dbo.FederalConstituency
     )
 VALUES 
     (
-        @id,
         @FcName,
         @Created,
    
        
     )
+
+Select SCOPE_IDENTITY() AS id;

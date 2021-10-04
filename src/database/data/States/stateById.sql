@@ -1,2 +1,2 @@
 Select * from dbo.States
-WHERE StateID=@StateID
+WHERE StateID=@Id

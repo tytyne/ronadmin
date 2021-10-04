@@ -44,6 +44,20 @@ const storeLga = async (data) => {
         return error.message;
     }
 }
+const updateLga = async (data,Id) => {
+    try {
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('LGA');
+        const insertPost = await pool.request()
+            .input('Id', sql.Int, Id)
+            .input('LgaName', sql.NVarChar(150), data.LgaName)
+            .input('State', sql.uniqueidentifier, data.State)
+            .query(sqlQueries.updateLga);
+        return insertPost.recordset;
+    } catch (error) {
+        return error.message;
+    }
+}
 
 const deleteById = async (Id) => {
     try {
@@ -57,5 +71,17 @@ const deleteById = async (Id) => {
         return error.message;
     }
 }
+const getById = async (Id) => {
+    try {
+    const pool = await sql.connect(config.sql)
+    const sqlQueries = await utils.loadSqlQueries('LGA')
+    const post = await pool.request()
+        .input('Id', sql.Int, Id)
+        .query(sqlQueries.getLgaById)
+    return post.recordset
+    } catch (error) {
+        return error.message;
+    }
+}
 
-export default {getLga,storeLga,deleteById,countingLga}
+export default {getLga,storeLga,updateLga,deleteById,countingLga,getById}

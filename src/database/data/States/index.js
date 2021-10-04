@@ -22,7 +22,8 @@ const storeState = async (data) => {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('States');
         const insertPost = await pool.request()
-            .input('Statename', sql.NVarChar(250), data.Statename)
+            .input('StateID', sql.UniqueIdentifier,data.StateID)
+            .input('Statename', sql.NVarChar(50), data.Statename)
             .input('Created', sql.DateTime, data.Created)
             
             .query(sqlQueries.createState);
@@ -36,11 +37,11 @@ const updateState = async (Id,data) => {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('States');
         const insertPost = await pool.request()
-            .input('Id', sql.Int, Id)
+            .input('Id', sql.UniqueIdentifier, Id)
             .input('Statename', sql.NVarChar(250), data.Statename)
             .input('Created', sql.DateTime, data.Created)
             
-            .query(sqlQueries.createState);
+            .query(sqlQueries.updateState);
         return insertPost.recordset;
     } catch (error) {
         return error.message;
@@ -53,19 +54,19 @@ const deleteById = async (Id) => {
     const pool = await sql.connect(config.sql)
     const sqlQueries = await utils.loadSqlQueries('States')
     const post = await pool.request()
-        .input('Id', sql.Int, Id)
+        .input('Id', sql.UniqueIdentifier, Id)
         .query(sqlQueries.deleteState)
     return post.recordset
     } catch (error) {
         return error.message;
     }
 }
-const getStateById = async (Id)=>{
+const getStateById = async (stateId)=>{
     try{
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('States');
         const user = await pool.request()
-            .input('Id', sql.Int,Id)
+            .input('Id',sql.UniqueIdentifier,stateId)
             .query(sqlQueries.stateById);
         return user.recordset;
     }

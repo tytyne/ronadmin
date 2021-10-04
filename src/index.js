@@ -25,7 +25,7 @@ const __dirname = path.resolve();
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
-// app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.urlencoded({ extended: false }));
 
 app.use(express.urlencoded({extended:true}));
 app.use(methodoverride());

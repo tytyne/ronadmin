@@ -1,6 +1,6 @@
 insert into dbo.NominationCategory
     (
-        [NominationCatID],
+
         [Description],
         [DateCreated],
         [DateUpdated]
@@ -8,9 +8,10 @@ insert into dbo.NominationCategory
     )
 VALUES 
     (
-        @NominationCatID,
         @Description,
         @DateCreated,
         @DateUpdated   
        
     )
+
+Select SCOPE_IDENTITY() AS NominationCatID;
