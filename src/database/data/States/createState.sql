@@ -3,14 +3,14 @@ insert into dbo.States
         [StateID],
         [Statename],
         [Created],
-        [Id]
      
     )
 VALUES 
     (
         @StateID,
         @Statename,
-        @Created,
-        @Id   
+        @Created, 
        
     )
+
+Select SCOPE_IDENTITY() AS Id;

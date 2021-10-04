@@ -1,6 +1,5 @@
 insert into dbo.SenatorialDistrict
     (
-        [id],
         [SDName],
         [Created]
       
@@ -8,8 +7,9 @@ insert into dbo.SenatorialDistrict
     )
 VALUES 
     (
-        @id,
         @SDName,
         @Created
           
     )
+
+Select SCOPE_IDENTITY() AS id;

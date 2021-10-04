@@ -1,14 +1,15 @@
 insert into dbo.StateHouseConstituency
     (
-        [id],
+      
         [ShcName],
         [Created]
 
     )
 VALUES 
     (
-        @id,
         @ShcName,
         @Created 
        
     )
+
+Select SCOPE_IDENTITY() AS id;
