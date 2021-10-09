@@ -75,3 +75,6 @@ const getStateById = async (Id)=>{
 }
 
 export default {getStates,storeState,updateState,deleteById,getStateById}
+
+export default {getStates,storeState,deleteById,getStateById}
+

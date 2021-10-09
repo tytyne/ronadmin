@@ -16,4 +16,6 @@ VALUES
         @DateUpdated
        
     )
+
 Select SCOPE_IDENTITY() AS Id;
+
