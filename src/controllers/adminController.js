@@ -46,7 +46,7 @@ class AdminController {
   static async login(req, res) {
     const { email, password } = req.body;
     const user = await AdminData.getAdminByEmail(email);
-    console.log(user);
+    // console.log(user);
     if (user.length === 0)
       return res.status(400).json({ error: "no user found!" });
     const passwordTodecode = user[0].Password;
@@ -54,6 +54,7 @@ class AdminController {
     if (!decrypss)
       return res.status(400).json({ error: "incorrect email or password" });
     const token = jwtToken.createToken(user[0]);
+    console.log("check token",token)
     return res.status(200).json({ message: "thank for signin", token });
   }
 

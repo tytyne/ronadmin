@@ -33,16 +33,13 @@ const storeGateway = async (data) => {
     }
 }
 
-const updateGateway = async (data,Id) => {
+const updateGateway = async (Id,data) => {
     try {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('Gateway');
         const insertPost = await pool.request()
-            .input('Id', sql.Int, data.Id)
+            .input('Id', sql.Int,Id)
             .input('Description', sql.NVarChar(150), data.Description)
-            .input('GKey1', sql.NVarChar(150), data.GKey1)
-            .input('GKey2', sql.NVarChar(150), data.GKey2)
-            .input('DateUpdated', sql.DateTime, data.DateUpdated)
             .query(sqlQueries.updateGateway);
         return insertPost.recordset;
     } catch (error) {

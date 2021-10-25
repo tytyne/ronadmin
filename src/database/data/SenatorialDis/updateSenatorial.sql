@@ -1,10 +1,10 @@
 UPDATE dbo.SenatorialDistrict
-SET [SDName]=@SDName,
-    [Created]=@Created,
+SET [SDName]=@SDName
+ 
       
-WHERE [id]=@id
+WHERE [id]=@Id
 
-SELECT  [SDName],
-        [Created],
+SELECT  [SDName]
+       
 FROM dbo.SenatorialDistrict
-WHERE [id]=@id
+WHERE [id]=@Id

@@ -1,16 +1,12 @@
-UPDATE dbo.Gateway
-SET [Description]=@Description,
-    [GKey1]=@GKey1,
-    [GKey2]=@GKey2,
-    [DateUpdated]=@DateUpdated,
+UPDATE dbo.Gateways
+SET [Description]=@Description
+   
     
-WHERE [Id]=@Id
+WHERE [GatewayID]=@Id
 
-SELECT  [Description],
-        [GKey1],
-        [GKey2],
-        [DateUpdated],
+SELECT  [Description]
+    
 FROM dbo.Gateway 
-WHERE [Id]=@Id
+WHERE [GatewayID]=@Id
 
 

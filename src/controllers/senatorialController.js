@@ -11,8 +11,12 @@ class SenatorialDistrictController{
     }
     static async createSenatorial(req, res, next) {
         try {
-          const data = req.body;
-          const post = await SenatorialDistrictData.storeSenatorial(data);
+          let{SDName} = req.body;
+          const post = await SenatorialDistrictData.storeSenatorial(
+           {
+            SDName,
+            Created:new Date()
+           });
           console.log("check senatorial", post);
           return res.status(200).json({ message: "successfully created", post});
         } catch (err) {
@@ -22,7 +26,7 @@ class SenatorialDistrictController{
     
       static async updatingSenatorial(req, res, next) {
         try {
-          const postId = req.params.Id;
+          const postId = req.params.id;
           const data = req.body;
           const post = await SenatorialDistrictData.getSenatorialById(postId);
           console.log("hellloooo", post);
@@ -37,8 +41,9 @@ class SenatorialDistrictController{
       }
       static async deletingSenatorial(req, res, next) {
         try {
-          const postId = req.query.Id;
+          const postId = req.params.id;
           const post = await SenatorialDistrictData.getSenatorialById(postId);
+          console.log("get senatorial",post)
           if (post.length === 0)
             return res.status(400).json({ error: "The Id doesn't exist!" });
           else await SenatorialDistrictData.deleteById(postId);

@@ -1,14 +1,14 @@
 insert into dbo.FederalConstituency
     (
         [FcName],
-        [Created],
+        [Created]
       
 
     )
 VALUES 
     (
         @FcName,
-        @Created,
+        @Created
    
        
     )

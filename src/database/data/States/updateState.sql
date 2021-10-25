@@ -1,13 +1,11 @@
 UPDATE dbo.States
-SET [Statename]=@Statename,
-    [Created]=@Created,
-    
-WHERE [StateID]=@StateID
+SET [Statename]=@Statename
+     
+WHERE [StateID]=@Id
 
-SELECT  [Statename],
-        [Lga],
-        
-FROM dbo.States
-WHERE [StateID]=@StateID
+SELECT  [Statename]
+             
+ FROM dbo.States
+ WHERE [StateID]=@Id
 
  

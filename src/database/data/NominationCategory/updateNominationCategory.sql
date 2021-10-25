@@ -1,10 +1,10 @@
 UPDATE dbo.NominationCategory
-SET [Description]=@Description,
-    [DateUpdated]=@DateUpdated,
+SET [Description]=@Description
+   
     
-WHERE [NominationCatID]=@NominationCatID
+WHERE [NominationCatID]=@Id
 
-SELECT  [Description],
-        [DateUpdated],
+SELECT  [Description]
+     
 FROM dbo.NominationCategory 
-WHERE [NominationCatID]=@NominationCatID
+WHERE [NominationCatID]=@Id

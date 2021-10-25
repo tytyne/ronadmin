@@ -1,2 +1,2 @@
 select * from dbo.SenatorialDistrict
-WHERE  id =@id
+WHERE  id=@Id

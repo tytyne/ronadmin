@@ -31,15 +31,18 @@ class statesController{
     
       static async updatingState(req, res, next) {
         try {
-          const stateId = req.params.Id;
-          const data = req.body;
+          const stateId = req.params.id;
+          console.log("check idddd",stateId)
+          let {Statename}  = req.body;
+          console.log("check data",Statename)
           const state = await StateData.getStateById(stateId);
           console.log("hellloooo", state);
     
           if (state.length === 0)
             return res.status(400).json({ error: "This  state can't be found!" });
-          else await StateData.updateState(stateId, data);
-          return res.status(200).json({ message: "Update state succesfully!" });
+          else 
+          await StateData.updateState(stateId,{Statename});
+          return res.status(200).json({ message: "Update state succesfully!" ,state});
         } catch (err) {
           return next(new Error(err));
         }

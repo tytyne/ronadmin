@@ -1,2 +1,2 @@
 Select * from dbo.FederalConstituency
-WHERE id=@id
+WHERE id=@Id

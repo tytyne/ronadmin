@@ -1,2 +1,2 @@
 Delete from dbo.Gateways
-WHERE  GatewayID =@Id
+WHERE  GatewayID=@Id

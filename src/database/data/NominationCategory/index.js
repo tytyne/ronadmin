@@ -31,15 +31,14 @@ const storeNominationCategory = async (data) => {
         return error.message;
     }
 }
-const updateNominationCategory = async (data) => {
+const updateNominationCategory = async (Id,data) => {
     try {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('NominationCategory');
         const insertPost = await pool.request()
+            .input('Id', sql.Int, Id)
             .input('Description', sql.NVarChar(150), data.Description)
-            .input('DateCreated', sql.DateTime, data.DateCreated)
-            .input('DateUpdated', sql.DateTime, data.DateUpdated)
-            .query(sqlQueries.createNominationCategory);
+            .query(sqlQueries.updateNominationCategoryById);
         return insertPost.recordset;
     } catch (error) {
         return error.message;

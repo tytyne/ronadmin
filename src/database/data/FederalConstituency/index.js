@@ -25,45 +25,43 @@ const storeFederal = async (data) => {
             .input('FcName', sql.NVarChar(250), data.FcName)
             .input('Created', sql.DateTime, data.Created)
             
-            .query(sqlQueries.createState);
+            .query(sqlQueries.createFederal);
         return insertPost.recordset;
     } catch (error) {
         return error.message;
     }
 }
-const updateFederal = async (data,id) => {
+const updateFederal = async (Id,data) => {
     try {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('FederalConstituency');
         const insertPost = await pool.request()
-            .input('id', sql.Int, id)
+            .input('Id', sql.Int, Id)
             .input('FcName', sql.NVarChar(250), data.FcName)
-            .input('Created', sql.DateTime, data.Created)
-            
-            .query(sqlQueries.createState);
+            .query(sqlQueries.updateFederalById);
         return insertPost.recordset;
     } catch (error) {
         return error.message;
     }
 }
-const deletefederalById = async (id) => {
+const deletefederalById = async (Id) => {
     try {
     const pool = await sql.connect(config.sql)
     const sqlQueries = await utils.loadSqlQueries('FederalConstituency')
     const post = await pool.request()
-        .input('id', sql.Int, id)
+        .input('Id', sql.Int, Id)
         .query(sqlQueries.deleteFederal)
     return post.recordset
     } catch (error) {
         return error.message;
     }
 }
-const getFederalById = async (id)=>{
+const getFederalById = async (federalId)=>{
     try{
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('FederalConstituency');
         const user = await pool.request()
-            .input('id', sql.Int,id)
+            .input('Id', sql.Int,federalId)
             .query(sqlQueries.federalById);
         return user.recordset;
     }

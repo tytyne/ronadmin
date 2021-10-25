@@ -11,9 +11,11 @@ class GatewayController{
     }
     static async createGateway(req, res, next) {
         try {
-          const data = req.body;
-          const post = await  GatewayData.storeGateway(data);
-          console.log("check federal", post);
+          let{Description} = req.body;
+          const post = await  GatewayData.storeGateway({
+            Description,
+            DateCreated:new Date()
+          })
           return res.status(200).json({ message: "successfully created", post});
         } catch (err) {
           return next(new Error(err));
@@ -22,7 +24,7 @@ class GatewayController{
     
       static async updatingGateway(req, res, next) {
         try {
-          const postId = req.params.Id;
+          const postId = req.params.id;
           const data = req.body;
           const post = await  GatewayData.getById(postId);
           console.log("hellloooo", post);
@@ -37,7 +39,7 @@ class GatewayController{
       }
       static async deletingGateway(req, res, next) {
         try {
-          const postId = req.query.Id;
+          const postId = req.params.id;
           const post = await  GatewayData.getById(postId);
           if (post.length === 0)
             return res.status(400).json({ error: "The Id doesn't exist!" });

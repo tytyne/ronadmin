@@ -11,8 +11,12 @@ class NominationCategoryController{
     }
     static async createNominationCategory(req, res, next) {
         try {
-          const data = req.body;
-          const post = await NominationCategoryData.storeNominationCategory(data);
+          let{Description} = req.body;
+          const post = await NominationCategoryData.storeNominationCategory(
+            {
+              Description,
+              DateCreated:new Date()
+            });
           console.log("check federal", post);
           return res.status(200).json({ message: "successfully created", post});
         } catch (err) {
@@ -22,7 +26,7 @@ class NominationCategoryController{
     
       static async updatingNominationCategory(req, res, next) {
         try {
-          const postId = req.params.Id;
+          const postId = req.params.id;
           const data = req.body;
           const post = await NominationCategoryData.getNomsById(postId);
           console.log("hellloooo", post);
@@ -37,11 +41,11 @@ class NominationCategoryController{
       }
       static async deletingNominationCategory(req, res, next) {
         try {
-          const postId = req.query.Id;
+          const postId = req.params.id;
           const post = await NominationCategoryData.getNomsById(postId);
           if (post.length === 0)
             return res.status(400).json({ error: "The Id doesn't exist!" });
-          else await NominationCategoryData.deleteById(federalId);
+          else await NominationCategoryData.deleteById(postId);
     
           return res.status(200).json({ message: "federal deleted successfully" });
         } catch (err) {

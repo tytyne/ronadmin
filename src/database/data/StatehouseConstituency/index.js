@@ -29,12 +29,12 @@ const storeStatehouse = async (data) => {
         return error.message;
     }
 }
-const updateStatehouse = async (data,id) => {
+const updateStatehouse = async (Id,data) => {
     try {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('StatehouseConstituency');
         const insertPost = await pool.request()
-            .input('id', sql.Int, data.id)
+            .input('Id', sql.Int, Id)
             .input('ShcName', sql.NVarChar(150), data.ShcName)
             .query(sqlQueries.updateStatehouse);
         return insertPost.recordset;
@@ -61,7 +61,7 @@ const getById = async (Id) => {
     const sqlQueries = await utils.loadSqlQueries('StatehouseConstituency')
     const post = await pool.request()
         .input('Id', sql.Int, Id)
-        .query(sqlQueries.delete)
+        .query(sqlQueries.stateById)
     return post.recordset
     } catch (error) {
         return error.message;

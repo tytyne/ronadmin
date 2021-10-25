@@ -1,8 +1,8 @@
 UPDATE dbo.StateHouseConstituency
 SET [ShcName]=@ShcName,   
-WHERE [id]=@id
+WHERE [id]=@Id
 
 SELECT  [ShcName],
               
 FROM dbo.StateHouseConstituency
-WHERE [id]=@id
+WHERE [id]=@Id

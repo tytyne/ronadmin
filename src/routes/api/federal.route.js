@@ -5,5 +5,5 @@ const router = express.Router()
 router.get("/federal/all",federalController.allFederals)
 router.delete("/federal/:id",federalController.deletingFederal)
 router.post("/federal/store",federalController.createFederal)
-router.put("/federal/update/:id",federalController.updatingFederal)
+router.put("/federal/:id",federalController.updatingFederal)
 export default router;

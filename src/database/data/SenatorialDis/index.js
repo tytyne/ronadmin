@@ -30,15 +30,15 @@ const storeSenatorial = async (data) => {
         return error.message;
     }
 }
-const updateSenatorial = async (data,id) => {
+const updateSenatorial = async (Id,data) => {
     try {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('SenatorialDis');
         const insertPost = await pool.request()
-            .input('id', sql.Int, id)
+            .input('Id', sql.Int, Id)
             .input('SDName', sql.NVarChar(150), data.SDName)
             .input('Created', sql.DateTime, data.Created)
-            .query(sqlQueries.createSenatorial);
+            .query(sqlQueries.updateSenatorialById);
         return insertPost.recordset;
     } catch (error) {
         return error.message;
@@ -62,7 +62,7 @@ const getSenatorialById = async (Id) => {
     const pool = await sql.connect(config.sql)
     const sqlQueries = await utils.loadSqlQueries('SenatorialDis')
     const post = await pool.request()
-        .input('Id', sql.Int, Id)
+        .input('Id', sql.Int,Id)
         .query(sqlQueries.senatorialById)
     return post.recordset
     } catch (error) {

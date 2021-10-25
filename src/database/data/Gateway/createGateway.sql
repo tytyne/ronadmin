@@ -1,4 +1,4 @@
-insert into dbo.Gateway
+insert into dbo.Gateways
     (
         [Description],
         [GKey1],
@@ -12,7 +12,7 @@ VALUES
         @Description,
         @GKey1,
         @GKey2,
-        @DateCreated
+        @DateCreated,
         @DateUpdated
        
     )
