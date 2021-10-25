@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "src/index.js",
-    "dev": "nodemon  src/index.js"
+    "start": "babel-node src/index.js",
+    "dev": "nodemon --exec babel-node  src/index.js"
   },
   "dependencies": {
     "@azure/abort-controller": "^1.0.4",
@@ -19,6 +19,7 @@
     "asyncawait": "^3.0.0",
     "axios": "^0.21.4",
     "azure-storage": "^2.10.4",
+    "babel-cli": "^6.26.0",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "chai-http": "^4.3.0",
