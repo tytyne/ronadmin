@@ -139,7 +139,20 @@ const deleteAdmin = async (Id) => {
         return error.message;
     }
 }
+const disableAdminById =async(userId)=>{
+    try{
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('Admins');
+        const user = await pool.request()
+            .input('Id', sql.Int, userId)
+            .query(sqlQueries.disableAdmin);
+        return user.recordset;
+    }
+    catch(error){
+        console.log(error.message)
+    }
+}
 
 export default{
-    getAdmins,loginAdmin,getAdminByEmail,createAdmin,deleteAdmin,getAdminById,getAdminByInput,updatePassword
+    getAdmins,loginAdmin,getAdminByEmail,createAdmin,deleteAdmin,getAdminById,getAdminByInput,updatePassword,disableAdminById
 }

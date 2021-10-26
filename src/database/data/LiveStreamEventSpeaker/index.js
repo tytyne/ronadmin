@@ -50,17 +50,27 @@ const updatingSpeaker=async(Id,data)=>{
     }
 }
 
-const getSpeakers=async()=>{
-    try{
+// const getSpeakers=async()=>{
+//     try{
+//         let pool = await sql.connect(config.sql);
+//         const sqlQueries = await utils.loadSqlQueries('LiveStreamEventSpeaker');
+//         const speakers = await pool.request().query(sqlQueries.speakerslist);
+//         return speakers.recordset;
+//     }
+//     catch(error){
+//         console.log(error.message)
+//     }
+
+// }
+const getSpeakers = async () => {
+    try {
         let pool = await sql.connect(config.sql);
         const sqlQueries = await utils.loadSqlQueries('LiveStreamEventSpeaker');
-        const data = await pool.request().query(sqlQueries.speakerslist);
-        return data.recordset;
+        const eventsList = await pool.request().query(sqlQueries.list);
+        return eventsList.recordset;
+    } catch (error) {
+        console.log(error.message);
     }
-    catch(error){
-        console.log(error.message)
-    }
-
 }
 
 const getSpeakerById=async(speakerId)=>{

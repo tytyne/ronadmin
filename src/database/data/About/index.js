@@ -21,11 +21,9 @@ const updatingAbout = async (id,data) => {
         const sqlQueries = await utils.loadSqlQueries('About');
         const updatePost = await pool.request()
             .input('id',sql.Int,id)
-            .input('Overview', sql.NVarChar(250), data.Overview)
-            .input('CoreValue', sql.NVarChar(250), data.CoreValue)
-            .input('Objectives', sql.NVarChar(250), data.Objectives)
-            .input('Updated', sql.DateTime, data.Updated)
-            .input('UpdatedBy', sql.NVarChar(1500), data.UpdatedBy)
+            .input('Overview', sql.NVarChar(5000), data.Overview)
+            .input('CoreValue', sql.NVarChar(5000), data.CoreValue)
+            .input('Objectives', sql.NVarChar(5000), data.Objectives)
             .query(sqlQueries.edit);
         return updatePost.recordset;
     } catch (error) {

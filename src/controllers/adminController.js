@@ -11,7 +11,7 @@ class AdminController {
     console.log(adminlist);
     if (adminlist === 0)
       return res.status(404).json({ message: "no admin found!" });
-    else return res.status(200).json({ message: "admins list", adminlist });
+    else return res.status(200).json(adminlist);
   }
 
   static async register(req, res, next) {
@@ -58,7 +58,14 @@ class AdminController {
     return res.status(200).json({ message: "thank for signin", token });
   }
 
-
+  static async getAdminInfo(req, res) {
+    const adminInfo = await AdminData.getAdminById(req.user.Id)
+    if (adminInfo != null) {
+      return res.status(200).json(adminInfo)
+    } else {
+      return res.status(400).json({message:"no info!"})
+    }
+  }
 
   static async forgetPassword(req, res, next) {
     try {
@@ -189,6 +196,21 @@ class AdminController {
       if (admin.length === 0)
         return res.status(400).json({ error: "no match to your search" });
       else return res.status(200).json({ message: "admin is", admin });
+    } catch (err) {
+      return next(new Error(err));
+    }
+  }
+
+  static async disablingAdmin(req, res, next) {
+    try {
+      const adminId = req.params.id;
+      const admin = await AdminData.getAdminById(adminId);
+      console.log(admin)
+      if (admin.length === 0) 
+        return res.status(400).json({ error: "no admin found" });
+      else 
+      await AdminData.disableAdminById(adminId);
+      return res.status(200).json({ message: "activeeeee" });
     } catch (err) {
       return next(new Error(err));
     }

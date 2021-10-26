@@ -15,4 +15,6 @@ router.get("/admins",auth.isAdmin,adminController.getAdmins)
 router.get("/admin/email",auth.isAdmin,adminController.getAdminByEmail)
 router.get("/admin/input",auth.isAdmin, adminController.getAdminByInput)
 router.get("/me",auth.isAdmin,adminController.getAdminValue)
+router.put("/disable/admin/:id",adminController.disablingAdmin)
+router.get("/admin/me",auth.isAdmin,adminController.getAdminInfo)
 export default router;

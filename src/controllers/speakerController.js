@@ -20,14 +20,7 @@ class speakerController {
       let emailArray, firstnameArray, lastnameArray, idArray;
       let checkUser;
       const users = await UserData.getUsers();
-      console.log(users);
-      let event = await EventData.getById(LiveStreamEventID);
-      const user = await UserData.getUserByEmail(Email);
-      if (user.length === 0) {
-        console.log(user);
-        checkUser = 0;
-      } 
-      else checkUser = user[0].Id;
+     
 
       let moderator = makeModerator(Moderator);
 
@@ -45,8 +38,7 @@ class speakerController {
         UpdatedBy: 1,
         Updated: new Date(),
       });
-      const discUser = await DiscussionSpaceUserData.getDiscussionUserById(
-        event[0].HostDiscussionSpaceId
+      const discUser = await DiscussionSpaceUserData.getDiscussionUserById(HostDiscussionSpaceId
       );
       console.log(discUser);
 
@@ -166,11 +158,11 @@ class speakerController {
       }
   }
 
-  static async getSpeakers(req, res, next) {
+  static async gettingSpeakers(req, res, next) {
       try {
-          const speakerlist = await SpeakerData.getSpeakers();
-          // console.log(speakerlist)
-              return res.status(200).json(speakerlist)
+          const speakerlist = await SpeakerData.getSpeakers;
+          console.log("check speakers",speakerlist)
+              return res.status(200).json({mesage:"speakers list",speakerlist})
       }
       catch (err) {
         return next(new Error(err))

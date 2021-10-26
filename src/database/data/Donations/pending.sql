@@ -1,0 +1,1 @@
+select SUM(Donations.Amount)  as pending from dbo.Donations where TrnsStatus=2

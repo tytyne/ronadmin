@@ -3,10 +3,20 @@ import { v4 as uuidv4 } from 'uuid';
 import moment from "moment";
 import EventData from "../database/data/Events"
 import customMessage from "../utils/customMessage";
+import UserData from "../database/data/User";
+import DiscussionSpaceUserData from "../database/data/DiscussionSpace_User";
 import statusCode from "../utils/statusCode";
 import responses from "../utils/responses";
 import errorMessage from "../utils/errorMessage";
 import { makeStatus} from "../utils/makeResponse"
+import Mailer from "../utils/mail/email";
+import {
+  makeEmailArray,
+  makeIdArray,
+  makeFirstnameArray,
+  makeLastnameArray,
+  makeUserIdArray,
+} from "../utils/makeResponse";
 
 
 
@@ -124,6 +134,7 @@ const getEventByInput = async (req, res, next) => {
 const addEvent = async (req, res, next) => {
     try {
         let { EventTitle, EventStartTime, EventDuration, EventDescription, EventStreamEnbedCode, HostType, HostDiscussionSpaceId, EventStatus } = req.body;
+        let emailArray, firstnameArray, lastnameArray, idArray;
 
 
         const currentDate = new Date()
@@ -131,17 +142,21 @@ const addEvent = async (req, res, next) => {
         if (new Date(EventStartTime) < currentDate) {
             return res.status(400).json({ message: "The Start time is before today " })
         }
+        //get users
+        const users = await UserData.getUsers();
+      
+        //check hosttype
 
         if (HostType === "2" || HostType === "4") {
 
-            HostDiscussionSpaceId = 0
+            HostDiscussionSpaceId = "0"
         }
         else
             HostDiscussionSpaceId
 
         const statusRes = await makeStatus(EventStatus)
 
-        const data = await EventData.creatEvent({
+        const event = await EventData.creatEvent({
             Id: uuidv4(),
             EventTitle, 
             EventStartTime, 
@@ -155,12 +170,59 @@ const addEvent = async (req, res, next) => {
             HostType,
             EventEndTime: newDateObj,
             EventStreamEmbedType: 1,
-
-            // CreatedBy: req.user.Id
-            CreatedBy:6
+            CreatedBy: req.user.Id,
+            CreatedBy:req.user.Id
 
         });
-        return res.status(200).json({ message: "Event created successfully!", data })
+        const discUser = await DiscussionSpaceUserData.getDiscussionUserById(HostDiscussionSpaceId);
+          console.log(discUser);
+    
+          if (HostType === "1" ||HostType === "3") {
+            //send emails to the user in that particular discussionSpace
+            emailArray = makeEmailArray(discUser);
+            idArray = makeUserIdArray(discUser);
+            firstnameArray = makeFirstnameArray(discUser);
+            lastnameArray = makeLastnameArray(discUser);
+          }
+          else 
+          console.log(users);
+          emailArray = makeEmailArray(users);
+          idArray = makeIdArray(users);
+          firstnameArray = makeFirstnameArray(users);
+          lastnameArray = makeLastnameArray(users);
+          // console.log(emailArray);
+          // console.log(idArray);
+          // console.log(firstnameArray);
+          // console.log(lastnameArray);
+          // console.log(emailArray.map((a) => a.Email));
+          // console.log(idArray.map((a) => a.Id));
+          // console.log(firstnameArray.map((a) => a.FirstName));
+          // console.log(lastnameArray.map((a) => a.LastName));
+          //sample data to send emails
+          let id_array = ["1", "2", "3"];
+          let email_array = [
+            "dusaflora@yahoo.fr",
+            "dusaflora2@gmail.com",
+            "fimbofinance@gmail.com",
+          ];
+          let name_array = ["florentine", "tytyne", "dusabe"];
+    
+          for (let i = 0; i < email_array.length; i++) {
+            const mail = new Mailer({
+              to: email_array[i],
+              name: name_array[i],
+              eventdate: `${EventStartTime}`,
+              eventitle: `${EventTitle}`,
+              eventdescription: `${EventDescription}`,
+              optionLinkAccept: `${process.env.APP_URL}/rsvp?u=${id_array[i]}&rsvp=1`,
+              optionLinkDecline: `${process.env.APP_URL}/rsvp?u=${id_array[i]}&rsvp=0`,
+            });
+            await mail.sendMail();
+          }
+    
+          return res
+            .status(200)
+            .json({ message: "event created successfully!", event });
 
     } catch (err) {
         return next(new Error(err))
@@ -169,12 +231,12 @@ const addEvent = async (req, res, next) => {
 
 const updatEvent = async (req, res, next) => {
     try {
-        const eventId = req.params.id;
-        const event = await EventData.getById(eventId);
+        let { EventTitle, EventStartTime, EventDuration, EventDescription, EventStreamEnbedCode, HostType, HostDiscussionSpaceId, EventStatus,event } = req.body;
+        let eventId = req.params.id;
+         event = await EventData.getById(eventId);
 
         if (event.length === 0)
             return res.status(400).json({ error: "This  event can\'t be found!" })
-        const { EventTitle, EventStartTime, EventDuration, EventDescription, EventStreamEnbedCode, HostType, HostDiscussionSpaceId,EventStatus } = req.body;
 
         const currentDate = new Date()
         var newDateObj = moment(EventStartTime).add(EventDuration, 'm').toDate();
@@ -193,7 +255,11 @@ const updatEvent = async (req, res, next) => {
 
 
         const updated = await EventData.updateEvent(eventId, {
-            EventTitle, EventDescription, EventStreamEnbedCode,
+            EventTitle,
+            EventStartTime,
+            EventDuration,
+            EventDescription,
+            EventStreamEnbedCode,
             EventStatus: statusRes,
             HostDiscussionSpaceId,
             CreatedAt: new Date(),

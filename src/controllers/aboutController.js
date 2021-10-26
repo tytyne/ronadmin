@@ -18,7 +18,7 @@ class AboutController{
             const data = req.body;
          
             const updated = await AboutData.updatingAbout(aboutId,data);
-            res.status().json({message:"updated about",updated});
+            res.status(200).json({message:"updated about",updated});
        
     }
 

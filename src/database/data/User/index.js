@@ -17,6 +17,19 @@ const getUsers=async()=>{
     }
 
 }
+const getEmailsUsers=async()=>{
+    try{
+        let pool = await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries('User');
+        const data = await pool.request().query(sqlQueries.userEmail);
+        return data.recordset;
+    }
+    catch(error){
+        console.log(error)
+        console.log(error.message)
+    }
+
+}
 const countingUsers=async()=>{
     try{
         let pool = await sql.connect(config.sql);
@@ -184,5 +197,8 @@ const getUserByInput=async(userdata)=>{
     }
 }
 
-export default{getUsers,getUserById,getUserByEmail,getUserByStatus,getUserByFistname,getUserByLastname,getUserByLga,getUserByInput,getUserByGender,deleteUserById,updatingUser, disableUserById,countingUsers}
+export default{getUsers,getUserById,getUserByEmail,
+    getUserByStatus,getUserByFistname,getUserByLastname,
+    getUserByLga,getUserByInput,getUserByGender,deleteUserById,
+    updatingUser, disableUserById,countingUsers,getEmailsUsers}
 

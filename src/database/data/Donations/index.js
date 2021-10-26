@@ -14,4 +14,29 @@ const getDonations = async () => {
         console.log(error.message);
     }
 }
-export default {getDonations}
+const getTotal= async()=>{
+    try{
+        let pool=await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries("Donations");
+        const posts = await pool.request().query(sqlQueries.total);
+        return posts.recordset;
+    }
+    catch (error) {
+        console.log(error.message);
+    }
+   
+}
+
+const getPending= async()=>{
+    try{
+        let pool=await sql.connect(config.sql);
+        const sqlQueries = await utils.loadSqlQueries("Donations");
+        const posts = await pool.request().query(sqlQueries.pending);
+        return posts.recordset;
+    }
+    catch (error) {
+        console.log(error.message);
+    }
+   
+}
+export default {getDonations,getTotal,getPending}

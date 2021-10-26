@@ -7,7 +7,7 @@ import User from "./user.route"
 import Host from "./hostType.route"
 import Discussion from "./discussion.route"
 import Group from "./group.route"
-import Trial from "./trial.route"
+import UserActivity from "./userActivity.route"
 import About from "./about.route"
 import Stats from "./stats.route"
 import Ward from "./ward.route"
@@ -28,7 +28,7 @@ import EventCategory from "./eventCategory.route"
 import NotificationType from "./notificationType.route"
 import DonationTypes from "./donationType.route"
 import Donation from "./donation.route"
-
+import FeedPost from "./feedPost.route"
 const router = express.Router()
 
 router.use("/",Admin)
@@ -39,7 +39,7 @@ router.use("/",Broadcast)
 router.use("/",Host)
 router.use("/",Discussion)
 router.use("/",Group)
-router.use("/t1/",Trial)
+
 router.use("/",About)
 router.use("/",Stats)
 router.use("/",Ward)
@@ -62,5 +62,7 @@ router.use("/",NotificationType)
 router.use("/", NominationCategory)
 router.use("/",DonationTypes)
 router.use("/",Donation)
+router.use("/",UserActivity)
+router.use("/",FeedPost)
 
 export default router;

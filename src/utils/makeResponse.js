@@ -3,6 +3,7 @@ const idUser=["Id"]
 const firstnameUser=["FirstName"]
 const lastnameUser=["LastName"]
 const userId=["UserID"]
+const  UserActivityIP=["UserActivityIP"]
 export const makeModerator =(Moderator)=>{
     if(Moderator===true){
         return 1
@@ -62,6 +63,13 @@ export const makeEmailArray = (array) =>
     export const makeLastnameArray = (array) =>
     array.map((object) =>
         lastnameUser.reduce((a, b) => {
+            a[b] = object[b];
+            return a;
+        }, {})
+    );
+    export const makeUseIP = (array) =>
+    array.map((object) =>
+    UserActivityIP.reduce((a, b) => {
             a[b] = object[b];
             return a;
         }, {})

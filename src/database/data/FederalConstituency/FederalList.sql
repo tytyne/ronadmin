@@ -1,1 +1,1 @@
-Select * from dbo.FederalConstituency
+Select * from dbo.FederalConstituency ORDER BY Created DESC 

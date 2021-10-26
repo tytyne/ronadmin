@@ -1,0 +1,1 @@
+select SUM(Donations.Amount)  as Total from dbo.Donations where TrnsStatus=1

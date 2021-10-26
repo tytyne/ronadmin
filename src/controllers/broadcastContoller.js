@@ -99,11 +99,12 @@ const createPost = async (req, res, next) => {
 const postVideo=async(req,res,next)=>{
 
     let MediaContent=req.files
+    console.log("check media content",MediaContent)
     let{Comment, TargetType, TargetID, Status}=req.body
   
     const form_data = new FormData();
     form_data.append('MediaContent',MediaContent.MediaContent.data, MediaContent.MediaContent.name);
-    const postResponse=await axios.post(`${hostAPI}/api/v1/MediaServices`,
+    const postResponse=await axios.post(`${hostAPI}/api/v1/UploadFiles/uploadfile`,
         form_data, { headers: form_data.getHeaders() 
        
       }) .then(resp=>{
@@ -121,12 +122,10 @@ const postVideo=async(req,res,next)=>{
         Comment,
         TargetType,
         TargetID,
-        // CreatedBy: req.user.Id,
-        CreatedBy:6,
+        CreatedBy: req.user.Id,
         CreatedAt: new Date(),
         MediaType:resp.data.data.contentType,
-        // UpdatedBy: req.user.Id,
-        UpdatedBy:6,
+        UpdatedBy: req.user.Id,
         UpdatedAt: new Date(),
         MediaURL:resp.data.data.contentUrl,
         Status
